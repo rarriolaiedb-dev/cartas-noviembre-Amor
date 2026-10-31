@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Universo de Noviembre para Ema 🌌💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-main: #ff477e;
+      --pink-soft: #ff85a1;
+      --gold-main: #ffd700;
+      --gold-soft: #fff3a0;
+      --bg-dark: #080911;
+      --card-bg: rgba(18, 20, 36, 0.88);
+      --font-title: 'Playfair Display', serif;
+      --font-hand: 'Caveat', cursive;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    #space-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1000px;
+      background: rgba(15, 17, 30, 0.9);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 71, 126, 0.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .brand {
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      color: var(--pink-main);
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255, 71, 126, 0.5);
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .btn-magic {
+      background: linear-gradient(135deg, var(--pink-main), var(--gold-main));
+      border: none;
+      color: #000;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 71, 126, 0.4);
+    }
+
+    .btn-magic:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 4rem 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-hand);
+      font-size: 2.5rem;
+      color: var(--gold-main);
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      margin: 0.5rem 0;
+      background: linear-gradient(135deg, #ffffff, var(--pink-soft), var(--gold-main));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      color: #cbd5e1;
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .galaxy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .card-star {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 24px;
+      padding: 2rem 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card-star:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--pink-main);
+      box-shadow: 0 20px 40px rgba(255, 71, 126, 0.4);
+    }
+
+    .card-star.anniversary-day {
+      background: linear-gradient(145deg, rgba(255, 71, 126, 0.35), rgba(255, 215, 0, 0.3));
+      border: 2px solid var(--gold-main);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+      animation: pulseGold 2s infinite alternate;
+    }
+
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+      100% { box-shadow: 0 0 45px rgba(255, 71, 126, 0.9); }
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.8rem;
+      transition: transform 0.3s;
+    }
+
+    .card-star:hover .card-icon {
+      transform: scale(1.2) rotate(-8deg);
+    }
+
+    .day-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink-main), var(--gold-main));
+      color: #000;
+      font-weight: 800;
+      padding: 0.30rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .interactive-box {
+      background: linear-gradient(135deg, rgba(255, 71, 126, 0.12), rgba(255, 215, 0, 0.12));
+      border: 2px dashed var(--pink-main);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reason-btn {
+      background: linear-gradient(135deg, var(--pink-main), var(--gold-main));
+      color: #000;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+      box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+    }
+
+    .reason-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.7);
+    }
+
+    .reason-display {
+      font-family: var(--font-hand);
+      font-size: 2.2rem;
+      color: var(--gold-soft);
+      margin-top: 1.5rem;
+      min-height: 3.5rem;
+      transition: all 0.3s;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .letter-popup {
+      background: linear-gradient(145deg, #121526, #21131d);
+      border: 2px solid var(--pink-main);
+      border-radius: 28px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      box-shadow: 0 25px 60px rgba(255, 71, 126, 0.45);
+      position: relative;
+      transform: scale(0.7) rotate(-3deg);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-overlay.active .letter-popup {
+      transform: scale(1) rotate(0deg);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      background: var(--pink-main);
+      transform: rotate(90deg);
+    }
+
+    .popup-title {
+      font-family: var(--font-title);
+      color: var(--gold-main);
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .popup-text {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #e2e8f0;
+      white-space: pre-line;
+      margin-bottom: 2rem;
+    }
+
+    .tabs-header {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,215,0,0.3);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--pink-main), var(--gold-main));
+      color: #000;
+      border-color: var(--gold-main);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+
+    .popup-footer {
+      font-family: var(--font-hand);
+      font-size: 2.2rem;
+      color: var(--gold-main);
+      text-align: right;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid rgba(255, 71, 126, 0.2);
+      color: #a0aec0;
+      font-size: 0.95rem;
+    }
+
+    .floating-kiss {
+      position: fixed;
+      font-size: 2.5rem;
+      pointer-events: none;
+      z-index: 3000;
+      animation: flyUp 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes flyUp {
+      0% { transform: translateY(0) scale(0.3); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="space-canvas"></canvas>
+
+  <nav class="navbar">
+    <a href="#" class="brand">🌌 Ema & Yo</a>
+    <div class="nav-btns">
+      <button class="btn-magic" onclick="throwKisses()">💋 Lluvia de Besos</button>
+      <button class="btn-magic" id="music-btn">🎵 Música: OFF</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="hero">
+      <div class="hero-subtitle">Para mi única y eterna princesa, Ema 💖</div>
+      <h1 class="hero-title">30 Días de Amor en Noviembre</h1>
+      <p class="hero-desc">
+        Abre una carta cada día de este mes. Todas están escritas para recordarte cuánto te amo y que jamás me voy a olvidar de ti. El 18 de Noviembre celebramos una fecha inolvidable.
+      </p>
+    </header>
+
+    <div class="galaxy-grid" id="galaxy-container"></div>
+
+    <section class="interactive-box">
+      <h2 style="font-family: var(--font-title); color: var(--gold-main);">¿Por qué te amo hoy, Ema? 💖</h2>
+      <p style="color: #cbd5e1; margin-top: 0.5rem;">Haz clic abajo para descubrir una razón única de mi amor por ti:</p>
+      <button class="reason-btn" onclick="generateReason()">✨ Descubrir Razón</button>
+      <div class="reason-display" id="reason-text">"Haz clic en el botón..."</div>
+    </section>
+  </div>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="letter-popup" id="popup-box">
+      <button class="close-btn" onclick="closeLetter()">&times;</button>
+      
+      <h2 class="popup-title" id="popup-title">Carta del Día</h2>
+
+      <div class="tabs-header" id="anniversary-tabs" style="display: none;">
+        <button class="tab-btn active" id="btn-letter" onclick="switchTab('tab-letter', 'btn-letter')">📜 Carta de Aniversario</button>
+        <button class="tab-btn" id="btn-promises" onclick="switchTab('tab-promises', 'btn-promises')">💍 Promesas de Amor</button>
+        <button class="tab-btn" id="btn-milestones" onclick="switchTab('tab-milestones', 'btn-milestones')">✨ Nuestro Camino</button>
+      </div>
+
+      <div id="tab-letter" class="tab-content">
+        <div class="popup-text" id="popup-content"></div>
+      </div>
+
+      <div id="tab-promises" class="tab-content" style="display: none;">
+        <div class="popup-text">
+          ✨ <b>MIS PROMESAS INCONDICIONALES PARA TI, EMA:</b>
+
+          1. <b>Amor Eterno e Incondicional:</b> Te prometo amarte todos los días de mi vida con la misma intensidad, respetando y cuidando siempre tu corazón.
+          2. <b>Presencia Inquebrantable:</b> Prometo estar a tu lado en cada victoria para celebrarte y en cada momento difícil para sostenerte la mano y darte paz.
+          3. <b>Detalles Diarios:</b> Prometo no dar por sentado jamás tu amor y seguir buscándote, conquistándote y sorprendiéndote siempre.
+          4. <b>Un Refugio Seguro:</b> Prometo que mis brazos y mi corazón serán siempre tu lugar más seguro sobre la tierra.
+          5. <b>Memoria Sagrada:</b> Te prometo solemnemente que jamás me voy a olvidar de ti, de tu risa, de tu voz ni de todo lo hermoso que construimos juntos.
+        </div>
+      </div>
+
+      <div id="tab-milestones" class="tab-content" style="display: none;">
+        <div class="popup-text">
+          🌟 <b>NUESTROS HITOS DE AMOR:</b>
+
+          • <b>El Primer Abrazo:</b> El día en que el mundo se detuvo al tenerte entre mis brazos.
+          • <b>Tu Primera Sonrisa Cerca:</b> Cuando entendí que tu mirada era la luz más bonita que existía.
+          • <b>El Sí Oficial:</b> El comienzo de esta aventura maravillosa de ser novios.
+          • <b>Nuestro Aniversario:</b> La celebración de un amor real, sincero, lleno de magia y de ilusión constante.
+        </div>
+      </div>
+
+      <div class="popup-footer">Tu novio que te ama incondicionalmente 💛</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Diseñado con amor puro e infinito únicamente para Ema 💖</p>
+  </footer>
+
+  <script>
+    const letters = {};
+
+    // CARTAS DULCES Y AMOROSAS DEL 1 AL 30 DE NOVIEMBRE
+    const dailyTexts = [
+      "Iniciamos Noviembre con el corazón rebosante de amor. Ema, mi vida, quiero que cada día de este mes recuerdes que eres lo mejor que me ha pasado.",
+      "Apareciste en mi vida para transformarlo todo. Tu sonrisa sigue siendo mi lugar favorito en el mundo entero.",
+      "No importa cuán gris o cansado sea un día, escuchar tu voz o pensar en ti le devuelve la luz a mi alma. Te amo infinitamente.",
+      "Amarte es la decisión más hermosa y fácil de mi vida. Gracias por ser mi novia, mi dulce compañera y mi princesa.",
+      "Cada pequeño gesto tuyo me demuestra la maravillosa persona que eres. Jamás me voy a olvidar de ti ni de la suerte que tengo.",
+      "Hoy solo quiero recordarte que mi amor por ti no tiene límites ni condiciones. Eres mi presente y mi futuro.",
+      "Tu presencia en mi vida es como un abrazo cálido que no termina jamás. Gracias por regalarme tu amor tan sincero.",
+      "Ema de mi alma, si tuviera que elegir un solo lugar en el universo para quedarme por siempre, sería a tu lado.",
+      "El amor verdadero da paz, y eso es exactamente lo que siento contigo. Eres mi calma y mi alegría diaria.",
+      "Nunca olvides lo valiosa, única e irreemplazable que eres para mí. Mi corazón le pertenece únicamente a una persona: a ti.",
+      "Pasan los días y mi admiración y cariño por ti siguen creciendo con más fuerza. Te amo más de lo que las palabras pueden expresar.",
+      "Gracias por sostenerme, por comprenderme y por regalarme la ternura más linda de este mundo.",
+      "Eres mi pensamiento favorito cada mañana al despertar y mi último deseo bonito antes de dormir.",
+      "Contigo aprendí que el amor real no se desgasta con el tiempo, sino que florece cada día más brillante.",
+      "Faltan pocos días para nuestra fecha especial, pero quiero que sepas que para mí cada día a tu lado es una fiesta.",
+      "Mi princesa Ema, eres el regalo más hermoso que la vida me dio. Jamás dejaré de agradecer tu existencia.",
+      "Mañana celebramos algo sagrado para los dos, pero desde hoy quiero decirte que te amaré por el resto de mis días."
+    ];
+
+    for (let i = 1; i <= 30; i++) {
+      if (i !== 18) {
+        let textIndex = (i > 18) ? (i - 2) % dailyTexts.length : (i - 1) % dailyTexts.length;
+        letters[i] = {
+          title: `${i} de Noviembre 💖`,
+          text: `Mi amada Ema:\n\n${dailyTexts[textIndex]}\n\nRecuerda hoy y siempre que mi amor por ti es infinito, sincero y eterno. Jamás me voy a olvidar de ti.`
+        };
+      }
+    }
+
+    // CARTA INMENSA Y PROFUNDA PARA EL 18 DE NOVIEMBRE (ANIVERSARIO DE NOVIOS)
+    letters[18] = {
+      title: "👑 18 de Noviembre: ¡NUESTRO ANIVERSARIO DE NOVIOS! 🎉💖",
+      text: `¡FELIZ ANIVERSARIO DE NOVIOS, MI AMOR ENTERO, MI REINA, MI EMA! 💖👑💐
+
+Hoy 18 de Noviembre es una fecha sagrada, mágica e imborrable en el calendario de mi vida. Llegamos a nuestro día especial caminando de la mano como novios, y verdaderamente no me alcanzan las palabras del universo para explicarte la felicidad desbordante que siento en mi corazón.
+
+Parece que fue ayer cuando todo comenzó, pero al mismo tiempo siento como si mi alma te hubiera conocido y esperado durante toda la vida. Llegaste a mi mundo para transformarlo por completo, para enseñarle a mi corazón lo que significa amar con verdad, con ilusión, con respeto y con una paz profunda que jamás había experimentado.
+
+Amo absolutamente todo de ti, mi niña hermosa: amo la manera en que me miras con esos ojos dulces que iluminan todo a su alrededor, la curva maravillosa de tu sonrisa cuando te ríes desde el alma, el tono de tu voz que tiene el poder de calmar cualquier tormenta en mi mente, tu ternura incondicional, tu paciencia y la complicidad tan bonita y única que hemos construido juntas.
+
+Estar a tu lado me hace sentir el hombre más afortunado, orgulloso y agradecido de este planeta. Cada abrazo que me has dado se ha quedado grabado en mi piel, cada beso que nos hemos regalado ha sido un pedazo de cielo, y cada conversación, carcajada o silencio compartido tiene un valor incalculable para mí.
+
+Te prometo hoy, en esta fecha tan especial que celebramos con tanto amor, que esto es apenas el primer tomo de un libro inmenso que nos queda por escribir juntas. Te prometo cuidarte en todo momento, respetarte como la reina que eres, escucharte siempre, apoyarte en cada uno de tus sueños y metas, y levantarte con un abrazo cálido si alguna vez sientes que el mundo pesa.
+
+Prometo no dar jamás por sentado el regalo de tenerte como novia, seguir buscándote, conquistándote y recordándote todos los días de mi vida lo hermosa, inteligente, dulce y especial que eres. 
+
+Gracias por haber dicho que sí, gracias por darme la oportunidad de amarte, gracias por ser mi novia, mi mejor amiga, mi refugio, mi princesa y el gran amor de mi vida. Guarda esta promesa grabada en lo más profundo de ti: **JAMÁS ME VOY A OLVIDAR DE TI, NI DE NUESTRA HISTORIA, NI DEL AMOR TAN INMENSO QUE SIENTO POR TI.**
+
+¡Te amo con toda mi alma, hoy, mañana y por el resto de mi existencia eterna! 💐💖👑`
+    };
+
+    const reasons = [
+      "Amo la manera en que tus ojos brillan cuando me miras.",
+      "Amo cómo haces que el día más difícil se vuelva lindo con solo un mensaje.",
+      "Amo la paz inmensa que me transmite tu voz.",
+      "Amo tu ternura, tu elegancia y tu corazón tan noble.",
+      "Amo la complicidad que tenemos cuando nos reímos juntos.",
+      "Amo ser tu novio y tener la dicha eterna de quererte."
+    ];
+
+    function generateReason() {
+      const display = document.getElementById('reason-text');
+      const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+      display.style.opacity = 0;
+      setTimeout(() => {
+        display.innerText = `"${randomReason}"`;
+        display.style.opacity = 1;
+      }, 200);
+    }
+
+    const container = document.getElementById('galaxy-container');
+
+    for (let day = 1; day <= 30; day++) {
+      const card = document.createElement('div');
+      card.className = `card-star ${day === 18 ? 'anniversary-day' : ''}`;
+      card.onclick = () => openLetter(day);
+
+      card.innerHTML = `
+        <div class="card-icon">${day === 18 ? '👑' : '⭐'}</div>
+        <div class="day-badge">${day} de Noviembre</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">${day === 18 ? '¡NUESTRO ANIVERSARIO! 💖' : 'Carta de Amor'}</div>
+      `;
+      container.appendChild(card);
+    }
+
+    function openLetter(day) {
+      const modal = document.getElementById('modal-overlay');
+      const tabs = document.getElementById('anniversary-tabs');
+
+      document.getElementById('popup-title').innerText = letters[day].title;
+      document.getElementById('popup-content').innerText = letters[day].text;
+
+      if (day === 18) {
+        tabs.style.display = 'flex';
+        switchTab('tab-letter', 'btn-letter');
+      } else {
+        tabs.style.display = 'none';
+        switchTab('tab-letter', 'btn-letter');
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeLetter() {
+      document.getElementById('modal-overlay').classList.remove('active');
+    }
+
+    function switchTab(tabId, btnId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+      document.getElementById(tabId).style.display = 'block';
+      if(document.getElementById(btnId)) {
+        document.getElementById(btnId).classList.add('active');
+      }
+    }
+
+    function throwKisses() {
+      const icons = ['💋', '💖', '👑', '✨', '🌸', '💛'];
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const kiss = document.createElement('div');
+          kiss.className = 'floating-kiss';
+          kiss.innerText = icons[Math.floor(Math.random() * icons.length)];
+          kiss.style.left = Math.random() * 90 + 5 + 'vw';
+          kiss.style.bottom = '-20px';
+          document.body.appendChild(kiss);
+          setTimeout(() => kiss.remove(), 3000);
+        }, i * 70);
+      }
+    }
+
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Star {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.opacity = Math.random();
+        this.speed = Math.random() * 0.02 + 0.005;
+      }
+      update() {
+        this.opacity += this.speed;
+        if (this.opacity > 1 || this.opacity < 0) this.speed = -this.speed;
+      }
+      draw() {
+        ctx.globalAlpha = Math.abs(this.opacity);
+        ctx.fillStyle = '#ffd700';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 70; i++) stars.push(new Star());
+
+    function animateSpace() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(animateSpace);
+    }
+    animateSpace();
+
+    let audioCtx = null;
+    let isPlaying = false;
+    let timer = null;
+    const notes = [261.63, 329.63, 392.00, 523.25, 440.00];
+
+    function playMelody() {
+      if (!isPlaying) return;
+      let note = notes[Math.floor(Math.random() * notes.length)];
+      let osc = audioCtx.createOscillator();
+      let gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(note, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 3);
+
+      timer = setTimeout(playMelody, 1000 + Math.random() * 1200);
+    }
+
+    document.getElementById('music-btn').addEventListener('click', () => {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('music-btn');
+
+      if (isPlaying) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        btn.innerText = '🎵 Música: ON';
+        playMelody();
+      } else {
+        btn.innerText = '🎵 Música: OFF';
+        clearTimeout(timer);
+      }
+    });
+  </script>
+</body>
+</html>
